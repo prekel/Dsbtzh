@@ -1,24 +1,34 @@
 ﻿open System
+open System.Threading.Tasks
 
-open Discord
-
-open Discord.WebSocket
-
-let from whom = sprintf "from %s" whom
-
-let cl (client: DiscordSocketClient) =
-    async {
-        let! loginAsync =
-            client.LoginAsync(TokenType.Bot, "")
-            |> Async.AwaitTask
-
-        0 |> ignore
-    }
+open FSharp.Control.Tasks
+open DSharpPlus
+open Emzi0767.Utilities
 
 [<EntryPoint>]
 let main argv =
-    let message = from "F#"
-    printfn "Hello world %s" message
-    let client = new DiscordSocketClient()
-    cl client |> ignore
+    use discord =
+        new DiscordClient(DiscordConfiguration(Token = argv.[0]))
+
+    discord.add_MessageCreated (
+        AsyncEventHandler<_, _>
+            (fun a b ->
+                task {
+                    if b.Author.Id <> a.CurrentUser.Id then
+                        let! _ = a.SendMessageAsync(b.Channel, b.Message.Content)
+                        return ()
+                    else
+                        return ()
+                }
+                :> Task)
+    )
+
+    discord.ConnectAsync()
+    |> Async.AwaitTask
+    |> Async.RunSynchronously
+
+    Task.Delay(-1)
+    |> Async.AwaitTask
+    |> Async.RunSynchronously
+
     0
