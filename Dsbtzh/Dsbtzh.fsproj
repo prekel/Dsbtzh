@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
@@ -10,8 +10,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="DSharpPlus" Version="4.0.1" />
-      <PackageReference Include="Ply" Version="0.3.1" />
+      <PackageReference Include="DSharpPlus" Version="4.4.2" />
+      <PackageReference Include="DSharpPlus.VoiceNext" Version="4.4.2" />
     </ItemGroup>
 
     <ItemGroup>
