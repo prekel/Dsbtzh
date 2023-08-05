@@ -10,12 +10,9 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Akkling" Version="0.13.0"/>
       <PackageReference Include="DSharpPlus" Version="4.4.2" />
       <PackageReference Include="DSharpPlus.VoiceNext" Version="4.4.2" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\Dsbtzh.Bet\Dsbtzh.Bet.fsproj" />
     </ItemGroup>
 
 </Project>
